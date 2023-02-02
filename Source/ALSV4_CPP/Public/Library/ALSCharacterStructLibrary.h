@@ -8,7 +8,7 @@
 #include "Engine/DataTable.h"
 #include "PhysicalMaterials/PhysicalMaterial.h"
 #include "Materials/MaterialInterface.h"
-#include "Library/ALSCharacterEnumLibrary.h"
+#include "ALSCharacterEnumLibrary.h"
 
 #include "ALSCharacterStructLibrary.generated.h"
 
@@ -42,7 +42,7 @@ struct FALSCameraSettings
 	float TargetArmLength = 0.0f;
 
 	UPROPERTY(EditAnywhere, Category = "Camera")
-	FVector SocketOffset;
+	FVector SocketOffset = FVector(0);
 
 	UPROPERTY(EditAnywhere, Category = "Camera")
 	float LagSpeed = 0.0f;
@@ -99,7 +99,7 @@ struct FALSMantleAsset
 	TObjectPtr<UCurveVector> PositionCorrectionCurve = nullptr;
 
 	UPROPERTY(EditAnywhere, Category = "Mantle System")
-	FVector StartingOffset;
+	FVector StartingOffset = FVector(0);
 
 	UPROPERTY(EditAnywhere, Category = "Mantle System")
 	float LowHeight = 0.0f;
@@ -138,7 +138,7 @@ struct FALSMantleParams
 	float PlayRate = 0.0f;
 
 	UPROPERTY(EditAnywhere, Category = "Mantle System")
-	FVector StartingOffset;
+	FVector StartingOffset = FVector(0);
 };
 
 USTRUCT(BlueprintType)
@@ -255,56 +255,56 @@ struct FALSHitFX : public FTableRowBase
 	GENERATED_BODY()
 
 	UPROPERTY(EditAnywhere, Category = "Surface")
-	TEnumAsByte<enum EPhysicalSurface> SurfaceType;
+	TEnumAsByte<enum EPhysicalSurface> SurfaceType = SurfaceType_Default;
 
 	UPROPERTY(EditAnywhere, Category = "Sound")
 	TSoftObjectPtr<USoundBase> Sound;
 
 	UPROPERTY(EditAnywhere, Category = "Sound")
-	EALSSpawnType SoundSpawnType;
+	EALSSpawnType SoundSpawnType = EALSSpawnType::Location;
 
 	UPROPERTY(EditAnywhere, Category = "Sound", meta = (EditCondition = "SoundSpawnType == EALSSpawnType::Attached"))
-	TEnumAsByte<enum EAttachLocation::Type> SoundAttachmentType;
+	TEnumAsByte<enum EAttachLocation::Type> SoundAttachmentType = EAttachLocation::KeepRelativeOffset;
 
 	UPROPERTY(EditAnywhere, Category = "Sound")
-	FVector SoundLocationOffset;
+	FVector SoundLocationOffset = FVector(0);
 
 	UPROPERTY(EditAnywhere, Category = "Sound")
-	FRotator SoundRotationOffset;
+	FRotator SoundRotationOffset = FRotator(0);
 
 	UPROPERTY(EditAnywhere, Category = "Decal")
 	TSoftObjectPtr<UMaterialInterface> DecalMaterial;
 
 	UPROPERTY(EditAnywhere, Category = "Decal")
-	EALSSpawnType DecalSpawnType;
+	EALSSpawnType DecalSpawnType = EALSSpawnType::Location;
 
 	UPROPERTY(EditAnywhere, Category = "Decal", meta = (EditCondition = "DecalSpawnType == EALSSpawnType::Attached"))
-	TEnumAsByte<enum EAttachLocation::Type> DecalAttachmentType;
+	TEnumAsByte<enum EAttachLocation::Type> DecalAttachmentType = EAttachLocation::KeepRelativeOffset;
 
 	UPROPERTY(EditAnywhere, Category = "Decal")
 	float DecalLifeSpan = 10.0f;
 
 	UPROPERTY(EditAnywhere, Category = "Decal")
-	FVector DecalSize;
+	FVector DecalSize = FVector(0);
 
 	UPROPERTY(EditAnywhere, Category = "Decal")
-	FVector DecalLocationOffset;
+	FVector DecalLocationOffset = FVector(0);
 
 	UPROPERTY(EditAnywhere, Category = "Decal")
-	FRotator DecalRotationOffset;
+	FRotator DecalRotationOffset = FRotator(0);
 
 	UPROPERTY(EditAnywhere, Category = "Niagara")
 	TSoftObjectPtr<UNiagaraSystem> NiagaraSystem;
 
 	UPROPERTY(EditAnywhere, Category = "Niagara")
-	EALSSpawnType NiagaraSpawnType;
+	EALSSpawnType NiagaraSpawnType = EALSSpawnType::Location;
 
 	UPROPERTY(EditAnywhere, Category = "Niagara", meta = (EditCondition = "NiagaraSpawnType == EALSSpawnType::Attached"))
-	TEnumAsByte<enum EAttachLocation::Type> NiagaraAttachmentType;
+	TEnumAsByte<enum EAttachLocation::Type> NiagaraAttachmentType = EAttachLocation::KeepRelativeOffset;
 
 	UPROPERTY(EditAnywhere, Category = "Niagara")
-	FVector NiagaraLocationOffset;
+	FVector NiagaraLocationOffset = FVector(0);
 
 	UPROPERTY(EditAnywhere, Category = "Niagara")
-	FRotator NiagaraRotationOffset;
+	FRotator NiagaraRotationOffset = FRotator(0);
 };
